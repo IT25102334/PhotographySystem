@@ -1,0 +1,73 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- CUSTOMER -->
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>servlet.CustomerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/CustomerServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- BOOKING -->
+    <servlet>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>servlet.BookingServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/BookingServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- PAYMENT -->
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>servlet.PaymentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- PACKAGE -->
+    <servlet>
+        <servlet-name>PackageServlet</servlet-name>
+        <servlet-class>servlet.PackageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PackageServlet</servlet-name>
+        <url-pattern>/PackageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- FEEDBACK -->
+    <servlet>
+        <servlet-name>FeedbackServlet</servlet-name>
+        <servlet-class>servlet.FeedbackServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FeedbackServlet</servlet-name>
+        <url-pattern>/FeedbackServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- STAFF -->
+    <servlet>
+        <servlet-name>StaffServlet</servlet-name>
+        <servlet-class>servlet.StaffServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StaffServlet</servlet-name>
+        <url-pattern>/StaffServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>

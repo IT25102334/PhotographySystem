@@ -60,7 +60,7 @@ public class Main {
 import model.Booking;
 import service.BookingService;
 
-public class Main {
+public class app.Main {
     public static void main(String[] args) {
 
         BookingService bookingService = new BookingService();
