@@ -14,6 +14,7 @@ public class Booking {
         this.customerName = customerName;
         this.eventDate = eventDate;
         this.location = location;
+        //this.Dumindu
     }
 
     public String getBookingId() {
