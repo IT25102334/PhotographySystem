@@ -1,5 +1,7 @@
 import model.Booking;
 import service.BookingService;
+import model.Customer;
+import service.CustomerService;
 public class Main {
     public static void main(String[] args) {
         BookingService bookingService = new BookingService();
@@ -51,8 +53,31 @@ public class Main {
 
         System.out.println("\nAll Bookings After Delete:");
         bookingService.displayAllBookings();
-    }
-}
+
+        //customer ...............
+        CustomerService cs = new CustomerService();
+
+        cs.addCustomer(new Customer("C001", "Kamal", "kamal@gmail.com"));
+        cs.addCustomer(new Customer("C002", "Nimal", "nimal@gmail.com"));
+
+        System.out.println("\nAll Customers:");
+        cs.displayAllCustomers();
+
+        Customer found = cs.searchCustomerById("C001");
+
+        if(found != null){
+            System.out.println("\nFound: " + found);
+        }
+
+        cs.updateCustomer("C001", "Kamal Perera", "kamalnew@gmail.com");
+
+        System.out.println("\nAfter Update:");
+        cs.displayAllCustomers();
+
+        cs.deleteCustomer("C002");
+
+        System.out.println("\nAfter Delete:");
+        cs.displayAllCustomers();
 
 
 
