@@ -2,6 +2,12 @@
 
 This is a group project for SE1020.
 
+## Preview
+
+### Home Page
+![Home](./preview/home.png)
+
+
 ## Modules
 
 * Customer Management
