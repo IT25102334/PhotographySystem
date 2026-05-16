@@ -1,31 +1,52 @@
 package util;
+
 import java.io.*;
 import java.util.*;
 
 public class FileUtil {
 
-    public static void writeToFile(String file, String data) {
+   
+    public static List<String> readFromFile(String filePath) {
+        List<String> lines = new ArrayList<>();
         try {
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(data + "\n");
-            fw.close();
-        } catch (Exception e) {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) lines.add(line);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
+
+    
+    public static void writeToFile(String filePath, String text) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+            bw.write(text);
+            bw.newLine();
+            bw.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static List<String> readFromFile(String file) {
-        List<String> list = new ArrayList<>();
+  
+    public static void deleteFromFile(String filePath, String id) {
+        List<String> lines = readFromFile(filePath);
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                list.add(line);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, false));
+            for (String line : lines) {
+                if (!line.startsWith(id + ",")) {
+                    bw.write(line);
+                    bw.newLine();
+                }
             }
-            br.close();
-        } catch (Exception e) {
+            bw.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return list;
     }
 }
