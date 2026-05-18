@@ -19,13 +19,12 @@ public class BookingService {
         return true;
     }
 
-    // Returns error string or null if success
     public String addBooking(Booking b) {
         if (!isDateAvailable(b.getDate())) {
             return "Date " + b.getDate() + " is already booked! Please choose another date.";
         }
         FileUtil.writeToFile(file, b.toString());
-        return null; // null = success
+        return null; 
     }
 
     public void deleteBooking(String id) {
