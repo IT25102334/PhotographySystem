@@ -1,14 +1,53 @@
 package util;
+
 import java.io.*;
+import java.util.*;
+
 public class FileUtil {
-    public static void writeToFile(String file, String data) {
-            try {
-                FileWriter fw = new FileWriter(file, true);
-                fw.write(data + "\n");
-                fw.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+
+    // READ from file
+    public static List<String> readFromFile(String filePath) {
+        List<String> lines = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) lines.add(line);
             }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
+
+    // WRITE to file (append mode)
+    public static void writeToFile(String filePath, String text) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+            bw.write(text);
+            bw.newLine();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    // DELETE a line that starts with given id
+    public static void deleteFromFile(String filePath, String id) {
+        List<String> lines = readFromFile(filePath);
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, false));
+            for (String line : lines) {
+                if (!line.startsWith(id + ",")) {
+                    bw.write(line);
+                    bw.newLine();
+                }
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
