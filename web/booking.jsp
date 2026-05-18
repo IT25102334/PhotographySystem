@@ -7,7 +7,7 @@
         for (String line : lines)
             if (!line.trim().isEmpty()) bookings.add(line.split(",", 4));
 
-    // Packages for dropdown
+
     List<String> pkgLines = (List<String>) request.getAttribute("packages");
     List<String[]> packages = new ArrayList<>();
     if (pkgLines != null)
