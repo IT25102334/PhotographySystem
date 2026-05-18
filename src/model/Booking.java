@@ -1,62 +1,47 @@
 package model;
 
+/**
+ * Booking — Model class
+ * Now includes packageId so customer can select a package when booking
+ *
+ * Stored as: id,customerId,date,packageId
+ *
+ * OOP Concepts:
+ *  - Encapsulation  : private fields with getters
+ *  - Constructor OL : 2 constructors (with package, without package)
+ *  - toString       : CSV format for file storage
+ */
 public class Booking {
-    private String bookingId;
-    private String customerName;
-    private String eventDate;
-    private String location;
 
-    public Booking() {
+    // Private fields — ENCAPSULATION
+    private String id;
+    private String customerId;
+    private String date;
+    private String packageId;  // NEW — selected package
+
+    // Constructor 1 — Full details with package (CONSTRUCTOR OVERLOADING)
+    public Booking(String id, String customerId, String date, String packageId) {
+        this.id         = id;
+        this.customerId = customerId;
+        this.date       = date;
+        this.packageId  = (packageId == null || packageId.trim().isEmpty())
+                ? "None" : packageId.trim();
     }
 
-    public Booking(String bookingId, String customerName, String eventDate, String location) {
-        this.bookingId = bookingId;
-        this.customerName = customerName;
-        this.eventDate = eventDate;
-        this.location = location;
+    // Constructor 2 — No package selected (CONSTRUCTOR OVERLOADING)
+    public Booking(String id, String customerId, String date) {
+        this(id, customerId, date, "None");
     }
 
-    public String getBookingId() {
-        return bookingId;
-    }
+    // ── Getters — ENCAPSULATION ──
+    public String getId()         { return id; }
+    public String getCustomerId() { return customerId; }
+    public String getDate()       { return date; }
+    public String getPackageId()  { return packageId; }
 
-    public void setBookingId(String bookingId) {
-        this.bookingId = bookingId;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String toFileString() {
-        return bookingId + "," + customerName + "," + eventDate + "," + location;
-    }
-
+    // toString for file storage
     @Override
     public String toString() {
-        return "Booking.Booking ID: " + bookingId +
-                ", Customer Name: " + customerName +
-                ", Event Date: " + eventDate +
-                ", Location: " + location;
+        return id + "," + customerId + "," + date + "," + packageId;
     }
 }
