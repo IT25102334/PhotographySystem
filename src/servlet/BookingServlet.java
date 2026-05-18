@@ -19,7 +19,6 @@ public class BookingServlet extends HttpServlet {
         String filePath = getServletContext().getRealPath("/data/bookings.txt");
         BookingService service = new BookingService(filePath);
 
-        // Handle search
         String searchId = request.getParameter("searchId");
         if (searchId != null && !searchId.trim().isEmpty()) {
             String found = service.findBooking(searchId.trim());
@@ -32,11 +31,9 @@ public class BookingServlet extends HttpServlet {
             request.setAttribute("searchId", searchId);
         }
 
-        // Pass error from redirect
         String error = request.getParameter("error");
         if (error != null) request.setAttribute("error", error);
 
-        // Pass packages list for dropdown
         String packagesPath = getServletContext().getRealPath("/data/packages.txt");
         List<String> packages = FileUtil.readFromFile(packagesPath);
         request.setAttribute("packages", packages);
@@ -63,12 +60,12 @@ public class BookingServlet extends HttpServlet {
                     java.net.URLEncoder.encode(request.getParameter("searchId"), "UTF-8"));
 
         } else {
-            // ADD — uses Constructor 1 (with packageId)
+
             Booking b = new Booking(
                     request.getParameter("id"),
                     request.getParameter("customerId"),
                     request.getParameter("date"),
-                    request.getParameter("packageId")  // NEW
+                    request.getParameter("packageId")  
             );
             String error = service.addBooking(b);
             if (error != null) {
